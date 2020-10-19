@@ -6,5 +6,7 @@
   "license": "MIT",
   "scripts": {},
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.0.0"
+  }
 }
