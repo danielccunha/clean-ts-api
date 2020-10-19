@@ -1,0 +1,10 @@
+{
+  "name": "clean-ts-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Daniel Cunha <danielcunha54@gmail.com>",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
