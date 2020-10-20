@@ -87,7 +87,7 @@ O objetivo do curso é mostrar como criar uma API com uma arquitetura bem defini
 - Middlewares
 - Nível de Acesso nas Rotas (Admin, User e Anônimo)
 - Deploy no Heroku
-- SErvir Arquivos Estáticos
+- Servir Arquivos Estáticos
 
 > ## Features do Git
 
