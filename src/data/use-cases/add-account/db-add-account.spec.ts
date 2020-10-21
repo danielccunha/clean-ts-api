@@ -1,8 +1,9 @@
 import { AddAccountModel } from '../../../domain/use-cases/add-account'
+import { Encrypter } from '../../protocols/encrypter'
 import { DbAddAccount } from './db-add-account'
 
 const makeEncrypterStub = () => {
-  class EncrypterStub {
+  class EncrypterStub implements Encrypter {
     async encrypt(): Promise<string> {
       return 'hashed_value'
     }
