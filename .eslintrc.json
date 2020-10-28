@@ -23,6 +23,7 @@
   "plugins": ["@typescript-eslint", "prettier", "eslint-plugin-import-helpers"],
   "rules": {
     "prettier/prettier": "error",
-    "space-before-function-paren": "off"
+    "space-before-function-paren": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
