@@ -1,12 +1,12 @@
-import { Authentication } from '../../../domain/use-cases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import {
   badRequest,
   serverError,
   unauthorized
 } from '../../helpers/http-helper'
-import { EmailValidator } from '../sign-up/sign-up-protocols'
+import { Authentication, EmailValidator } from './login-protocols'
 import { LoginController } from './login'
+import { HttpRequest } from '../../protocols'
 
 const makeAuthentication = (): Authentication => {
   class AuthenticationStub implements Authentication {
@@ -35,7 +35,7 @@ const makeSut = () => {
   return { sut, emailValidatorStub, authenticationStub }
 }
 
-const makeValidRequest = () => ({
+const makeValidRequest = (): HttpRequest => ({
   body: {
     email: 'any_email@mail.com',
     password: 'any_password'
