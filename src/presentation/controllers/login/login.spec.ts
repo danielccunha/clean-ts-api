@@ -48,10 +48,10 @@ describe('Login Controller', () => {
     const authSpy = jest.spyOn(authenticationStub, 'auth')
     const request = makeValidRequest()
     await sut.handle(request)
-    expect(authSpy).toHaveBeenCalledWith(
-      request.body.email,
-      request.body.password
-    )
+    expect(authSpy).toHaveBeenCalledWith({
+      email: request.body.email,
+      password: request.body.password
+    })
   })
 
   test('Should return 401 if invalid credentials are provided', async () => {
