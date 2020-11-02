@@ -4,8 +4,8 @@ import {
   serverError,
   unauthorized
 } from '../../helpers/http/http-helper'
-import { Authentication, Validation } from './login-protocols'
-import { LoginController } from './login'
+import { Authentication, Validation } from './login-controller-protocols'
+import { LoginController } from './login-controller'
 import { HttpRequest } from '../../protocols'
 
 const makeAuthentication = (): Authentication => {

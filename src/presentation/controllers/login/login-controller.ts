@@ -2,15 +2,15 @@ import {
   Controller,
   HttpRequest,
   HttpResponse,
-  Authentication
-} from './login-protocols'
+  Authentication,
+  Validation
+} from './login-controller-protocols'
 import {
   badRequest,
   ok,
   serverError,
   unauthorized
 } from '../../helpers/http/http-helper'
-import { Validation } from '../sign-up/sign-up-protocols'
 
 export class LoginController implements Controller {
   private readonly authentication: Authentication
