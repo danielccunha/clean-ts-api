@@ -15,6 +15,9 @@
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
