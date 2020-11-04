@@ -122,6 +122,14 @@ describe('SignUp Controller', () => {
       password: request.body.password
     })
   })
-})
 
-// março à dezembro, 1000/mês no dia 30
+  test('Should return 500 if Authentication throws', async () => {
+    const { sut, authenticationStub } = makeSut()
+    jest.spyOn(authenticationStub, 'auth').mockImplementationOnce(() => {
+      throw new Error()
+    })
+    const request = makeFakeRequest()
+    const response = await sut.handle(request)
+    expect(response).toEqual(serverError(new Error()))
+  })
+})
