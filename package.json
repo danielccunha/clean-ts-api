@@ -1,10 +1,13 @@
 {
   "name": "clean-ts-api",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "main": "index.js",
   "author": "Daniel Cunha <danielcunha54@gmail.com>",
+  "repository": "https://github.com/danielccunha/clean-ts-api",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/main/server.js",
+    "build": "rimraf dist && tsc",
     "dev": "tsnd --respawn --transpile-only --quiet --ignore-watch node_modules src/main/server.ts",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
@@ -13,10 +16,12 @@
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage"
   },
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "bcrypt": "^5.0.0",
     "express": "^4.17.1",
-    "fast-glob": "^3.2.4",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
     "validator": "^13.1.17"
@@ -48,6 +53,7 @@
     "jest": "^26.5.3",
     "lint-staged": "^10.4.2",
     "prettier": "^2.1.2",
+    "rimraf": "^3.0.2",
     "supertest": "^5.0.0",
     "ts-jest": "^26.4.1",
     "ts-node-dev": "^1.0.0",
