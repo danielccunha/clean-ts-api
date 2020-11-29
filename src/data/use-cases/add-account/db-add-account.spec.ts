@@ -11,6 +11,13 @@ const makeFakeAccountData = () => ({
   password: 'valid_password'
 })
 
+const makeFakeAccount = () => ({
+  id: 'valid_id',
+  name: 'valid_name',
+  email: 'valid_email',
+  password: 'hashed_password'
+})
+
 const makeHasher = () => {
   class HasherStub implements Hasher {
     async hash(): Promise<string> {
@@ -24,12 +31,7 @@ const makeHasher = () => {
 const makeAddAccountRepository = () => {
   class AddAccountRepositoryStub implements AddAccountRepository {
     async add(): Promise<AccountModel> {
-      return {
-        id: 'valid_id',
-        name: 'valid_name',
-        email: 'valid_email',
-        password: 'hashed_password'
-      }
+      return makeFakeAccount()
     }
   }
 
@@ -86,11 +88,6 @@ describe('DbAddCount UseCase', () => {
   test('Should return an account on success', async () => {
     const { sut } = makeSut()
     const account = await sut.add(makeFakeAccountData())
-    expect(account).toEqual({
-      id: 'valid_id',
-      name: 'valid_name',
-      email: 'valid_email',
-      password: 'hashed_password'
-    })
+    expect(account).toEqual(makeFakeAccount())
   })
 })
