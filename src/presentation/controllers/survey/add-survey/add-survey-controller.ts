@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpResponse
 } from './add-survey-controller-protocols'
-import { ok, serverError } from '../../../helpers/http/http-helper'
+import { badRequest, ok, serverError } from '../../../helpers/http/http-helper'
 import { Validation } from '../../../protocols'
 
 export class AddSurveyController implements Controller {
@@ -11,7 +11,11 @@ export class AddSurveyController implements Controller {
 
   async handle({ body }: HttpRequest): Promise<HttpResponse> {
     try {
-      this.validation.validate(body)
+      const error = this.validation.validate(body)
+      if (error) {
+        return badRequest(error)
+      }
+
       return ok({})
     } catch (error) {
       return serverError(error)
