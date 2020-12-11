@@ -7,7 +7,6 @@ import {
 import {
   badRequest,
   noContent,
-  ok,
   serverError
 } from '../../../helpers/http/http-helper'
 import { Validation } from '../../../protocols'
