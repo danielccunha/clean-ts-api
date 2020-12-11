@@ -1,19 +1,42 @@
+import { LoadAccountByTokenRepository } from './../../protocols/db/account/load-account-by-token-repository'
+import { AccountModel } from './../../../domain/models/account'
 import { DbLoadAccountByToken } from './db-load-account-by-token'
 import { Decrypter } from './../../protocols/cryptography/decrypter'
+
+const makeFakeAccount = (): AccountModel => ({
+  id: 'any_id',
+  email: 'any_mail@mail.com',
+  name: 'any_name',
+  password: 'any_password'
+})
 
 const makeDecrypter = (): Decrypter => {
   class DecrypterStub implements Decrypter {
     async decrypt(): Promise<string> {
-      return 'any_value'
+      return 'any_token'
     }
   }
   return new DecrypterStub()
 }
 
+const makeLoadAccountByTokenRepository = (): LoadAccountByTokenRepository => {
+  class LoadAccountByTokenRepositoryStub
+    implements LoadAccountByTokenRepository {
+    async loadByToken(): Promise<AccountModel> {
+      return makeFakeAccount()
+    }
+  }
+  return new LoadAccountByTokenRepositoryStub()
+}
+
 const makeSut = () => {
   const decrypterStub = makeDecrypter()
-  const sut = new DbLoadAccountByToken(decrypterStub)
-  return { sut, decrypterStub }
+  const loadAccountByTokenRepositoryStub = makeLoadAccountByTokenRepository()
+  const sut = new DbLoadAccountByToken(
+    decrypterStub,
+    loadAccountByTokenRepositoryStub
+  )
+  return { sut, decrypterStub, loadAccountByTokenRepositoryStub }
 }
 
 describe('DbLoadAccountByToken UseCase', () => {
@@ -29,5 +52,15 @@ describe('DbLoadAccountByToken UseCase', () => {
     jest.spyOn(decrypterStub, 'decrypt').mockResolvedValueOnce(null)
     const account = await sut.load('any_token', 'any_role')
     expect(account).toBeNull()
+  })
+
+  test('Should call LoadAccountByTokenRepository with correct values', async () => {
+    const { sut, loadAccountByTokenRepositoryStub } = makeSut()
+    const loadByToken = jest.spyOn(
+      loadAccountByTokenRepositoryStub,
+      'loadByToken'
+    )
+    await sut.load('any_token', 'any_role')
+    expect(loadByToken).toHaveBeenCalledWith('any_token', 'any_role')
   })
 })
