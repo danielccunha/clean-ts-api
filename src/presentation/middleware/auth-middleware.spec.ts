@@ -1,7 +1,7 @@
 import { HttpRequest } from './../protocols/http'
 import { LoadAccountByToken } from './../../domain/use-cases/load-account-by-token'
 import { AccessDeniedError } from '../errors'
-import { forbidden } from '../helpers/http/http-helper'
+import { forbidden, ok } from '../helpers/http/http-helper'
 import { AuthMiddleware } from './auth-middleware'
 import { AccountModel } from '../../domain/models/account'
 
@@ -54,5 +54,11 @@ describe('Auth Middleware', () => {
       .mockReturnValueOnce(Promise.resolve(null))
     const response = await sut.handle(makeFakeRequest())
     expect(response).toEqual(forbidden(new AccessDeniedError()))
+  })
+
+  test('Should return 200 if LoadAccountByToken returns an account', async () => {
+    const { sut } = makeSut()
+    const response = await sut.handle(makeFakeRequest())
+    expect(response).toEqual(ok({ accountId: 'any_id' }))
   })
 })
