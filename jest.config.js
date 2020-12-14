@@ -5,7 +5,8 @@ module.exports = {
     '!<rootDir>/src/main/**',
     '!<rootDir>/src/**/*-protocols.ts',
     '!**/protocols/**',
-    '!**/test/**'
+    '!**/test/**',
+    '!**/mongo-helper.ts'
   ],
   coverageDirectory: 'coverage',
   testEnvironment: 'node',
