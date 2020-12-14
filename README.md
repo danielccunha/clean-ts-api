@@ -1,6 +1,8 @@
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com)
 [![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
+[![Build Status](https://travis-ci.org/danielccunha/clean-ts-api.svg?branch=master)](https://travis-ci.org/danielccunha/clean-ts-api)
+[![Coverage Status](https://coveralls.io/repos/github/danielccunha/clean-ts-api/badge.svg)](https://coveralls.io/github/danielccunha/clean-ts-api)
 
 # Clean Node API
 
