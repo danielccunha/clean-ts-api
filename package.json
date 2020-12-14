@@ -14,7 +14,8 @@
     "test:unit": "yarn test --watch -c jest-unit-config.js",
     "test:integration": "yarn test --watch -c jest-integration-config.js",
     "test:staged": "yarn test --findRelatedTests",
-    "test:ci": "yarn test --coverage"
+    "test:ci": "yarn test --coverage",
+    "test:coveralls": "yarn test:ci && coveralls < coverage/lcov.info"
   },
   "engines": {
     "node": "14.x"
@@ -38,6 +39,7 @@
     "@types/validator": "^13.1.0",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "@typescript-eslint/parser": "^4.4.1",
+    "coveralls": "^3.1.0",
     "eslint": "^7.11.0",
     "eslint-config-node": "^4.1.0",
     "eslint-config-prettier": "^6.13.0",
